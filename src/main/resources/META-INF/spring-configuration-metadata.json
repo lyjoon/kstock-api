@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "com.kakao.developer.public-channel-id",
+      "type": "java.lang.String",
+      "description": "카카오 채널 ID"
+    }
+  ]
+}
