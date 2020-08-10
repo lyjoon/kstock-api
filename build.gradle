@@ -1,0 +1,55 @@
+buildscript {
+    ext {
+        springBootVersion = '2.3.0.RELEASE'
+        lombokVersion = '1.18.12'
+        feignVersion = '11.0'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.github.kstock'
+version '1.0-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    //spring
+    implementation "org.springframework.boot:spring-boot-starter:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-validation:${springBootVersion}"
+
+    //feign(spring-openfeign)
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:2.2.3.RELEASE'
+    implementation "io.github.openfeign:feign-okhttp:${feignVersion}"
+    implementation "io.github.openfeign:feign-httpclient:${feignVersion}"
+
+    //test
+    testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+
+    //lombok 설정
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+
+    //ocx 연동모듈
+    //compile group: 'net.sf.jacob-project', name: 'jacob', version: '1.14.3'
+
+    //tc 관련
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    implementation files('./libs/jacob/jacob.jar')
+}
